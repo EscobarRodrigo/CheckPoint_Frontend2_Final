@@ -1,23 +1,33 @@
 
-let cookieJwt;
+// 1. capturar o token do localStorage (qual o nome da variável?)
+
+let tokenUser = localStorage.getItem('token');
+
+
+//2. Passar como parametro o TOKEN na função buscar usuário na API;
+
+
+
+
+// let cookieJwt;
 
 ///@@@@@@ Executa automaticamente ao iniciar a página
 
-onload = () => {
-    cookieJwt = getCookie("jwt");
-    //Simula uma validação se o usuário não estiver autenticado e autorizado
-    if (cookieJwt == "" || cookieJwt == null || cookieJwt == undefined) {
-        alert("Você não tem permissão para usar esta página!\nVoltando para a tela de login...");
-        window.location = "login.html"
-    } else {
-        buscaUsuarioNaApi(cookieJwt);
-        buscaAsTarefasDoUsuario(cookieJwt);
-    }
-}
+// onload = () => {
+//     cookieJwt = getCookie("jwt");
+//     //Simula uma validação se o usuário não estiver autenticado e autorizado
+//     if (cookieJwt == "" || cookieJwt == null || cookieJwt == undefined) {
+//         alert("Você não tem permissão para usar esta página!\nVoltando para a tela de login...");
+//         window.location = "login.html"
+//     } else {
+//         buscaUsuarioNaApi(cookieJwt);
+//         buscaAsTarefasDoUsuario(cookieJwt);
+//     }
+// }
 
 //@@@@ CARREGA E ALTERA DADOS DO USUÁRIO LOGADO
 //Usando Async-Await
-async function buscaUsuarioNaApi(tokenJwtArmazenado) {
+async function buscaUsuarioNaApi(token) {
     //console.log(tokenJwtArmazenado);
     let urlGetUsuario = "https://ctd-todo-api.herokuapp.com/v1/users/getMe";
 
@@ -25,7 +35,7 @@ async function buscaUsuarioNaApi(tokenJwtArmazenado) {
         //method: 'GET', //Pode omitir o GET da configuração
         //body: objetoUsuarioCadastroJson, //Não precisa de body
         headers: {
-            'Authorization': `${tokenJwtArmazenado}`, // é OBRIGATORIO passar essa informação
+            'Authorization': `${token}`, // é OBRIGATORIO passar essa informação
         },
     };
     let resposta;
@@ -44,7 +54,7 @@ async function buscaUsuarioNaApi(tokenJwtArmazenado) {
         let escolhaUsuario = confirm("Ocorreu algum erro ao buscar as informações do usuário logado")
         console.log(error);
         if (escolhaUsuario) {
-            buscaUsuarioNaApi(cookieJwt);
+            buscaUsuarioNaApi(tokenUser);
         }
     }
 }
@@ -55,11 +65,11 @@ function alteraDadosUsuarioEmTela(objetoUsuarioRecebido) {
 }
 
 ////@@@@ BUSCANDO TODAS AS TAREFAS DO USUÁRIO LOGADO
-function buscaAsTarefasDoUsuario(tokenJwtArmazenado) {
+function buscaAsTarefasDoUsuario(token) {
     let urlGetTarefas = "https://ctd-todo-api.herokuapp.com/v1/tasks";
     let configuracaoRequisicao = {
         headers: {
-            'Authorization': `${tokenJwtArmazenado}`, // é OBRIGATORIO passar essa informação
+            'Authorization': `${token}`, // é OBRIGATORIO passar essa informação
         },
     };
 
@@ -144,7 +154,7 @@ botaoCadastrar.addEventListener('click', evento => {
             headers: {
                 // Precisa passar ambas propriedades pro Headers da requisição
                 'Content-type': 'application/json', //responsável elo json no Body
-                'Authorization': `${cookieJwt}` //responsável pela autorização (vem do cookie)
+                'Authorization': `${tokenUser}` //responsável pela autorização (vem do cookie)
             },
         }
 
@@ -171,7 +181,7 @@ botaoCadastrar.addEventListener('click', evento => {
 });
 
 ///@@@ ATUALIZAR TAREFA, ALETANDO SEU STATUS 
-function atualizaTarefa(idTarefa, status, tokenJwt) {
+function atualizaTarefa(idTarefa, status, token) {
 
     let endPointEditarTarefa = `https://ctd-todo-api.herokuapp.com/v1/tasks/${idTarefa}`;
     let configuracoesRequisicao = {
@@ -207,13 +217,13 @@ function atualizaTarefa(idTarefa, status, tokenJwt) {
 }
 
 ///@@@ DELETAR UMA TAREFA POR SEU ID
-function deletarTarefa(idTarefa, tokenJwt) {
+function deletarTarefa(idTarefa, token) {
 
     let endPointDeletarTarefa = `https://ctd-todo-api.herokuapp.com/v1/tasks/${idTarefa}`;
     let configuracoesRequisicao = {
         method: 'DELETE',
         headers: {
-            'Authorization': tokenJwt //responsável pela autorização (vem do cookie)
+            'Authorization': token //responsável pela autorização (vem do cookie)
         },
     }
 

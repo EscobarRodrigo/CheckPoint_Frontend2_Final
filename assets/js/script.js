@@ -58,7 +58,7 @@ if (formularioLogin) {
             alert("Erro do servidor");
           } else {
             alert(resultado.jwt);
-            sessionStorage.setItem("token", resultado.jwt);
+            localStorage.setItem("token", resultado.jwt);
             window.location.href = "tarefas.html";
             console.log('Usuário criado com sucesso')
           }
@@ -115,8 +115,8 @@ if (formularioCadastro) {
             alert("Erro do servidor")
           } else {
             alert(resultado.jwt);
-            sessionStorage.setItem("token", resultado.jwt);
-            window.location.href = "login.html?mensagem=Usuário criado com sucesso";
+            localStorage.setItem("token", resultado.jwt);
+            window.location = "login.html";
             alert('Usuário criado com sucesso')
           }
 
@@ -216,7 +216,7 @@ email.addEventListener('blur', function(evento) {
 });
 
 
-senha.addEventListener('blur', function(evento) {
+senha.addEventListener('change', function(evento) {
 
   var valorCampoSenha = evento.target.value.trim();
 
@@ -229,12 +229,12 @@ senha.addEventListener('blur', function(evento) {
       return true;
   }
   else {
-      alert('A senha deve possuir entre 8 e 15 caracteres, os quais deverão conter pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial.');
+      alert('A senha deve possuir entre 8 e 15 caracteres, os quais deverão conter pelo menos UMA letra maiúscula, UMA minúscula, UM número e UM caractere especial (Exemplo: @ # $ %).');
   }
 });
 
 
-confirmarSenha.addEventListener('blur', function(evento) {
+confirmarSenha.addEventListener('chance', function(evento) {
 
   var valorCampoSenha = evento.target.value.trim();
 
