@@ -250,10 +250,10 @@ z-index: 20; */
   padding: 1em;
 
   border-radius: .2em;
-  box-shadow: 3px 3px 5px lightgrey;
+  box-shadow: 3px 3px 5px rgb(246, 246, 246);
   border-radius: .2em;
   z-index: 20;
-  color: rgb(170, 170, 170);
+  color: rgb(237, 229, 229);
 }
 
 .tarefas-terminadas {
@@ -265,20 +265,20 @@ z-index: 20; */
 }
 
 .tarefas-terminadas i {
-  color: grey;
-  background-color: rgb(228, 228, 228);
-}
+  color: rgb(16, 16, 16);
+  background-color: rgba(228, 228, 228, 0);
+} 
 
 .tarefas-terminadas button {
   margin-left: 10px;
 }
 
 .tarefas-terminadas .tarefa .descricao {
-  background-color: rgb(228, 228, 228);
+  background-color: rgba(8, 8, 8, 0.472);
 }
 
 .tarefas-terminadas .tarefa .descricao .nome {
-  color: grey;
+  color: rgb(252, 252, 252);
   text-decoration: line-through;
 }
 
