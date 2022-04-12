@@ -134,7 +134,7 @@ let email = document.getElementById("email");
 let senha = document.getElementById("senha");
 let confirmarSenha = document.getElementById("confirmarSenha");
 
-nome.addEventListener('blur', function(evento) {
+nome.addEventListener('change', function(evento) {
 
   var valorCampoNome = evento.target.value.trim();
 
@@ -166,7 +166,7 @@ nome.addEventListener('blur', function(evento) {
 
 
 
-sobrenome.addEventListener('blur', function(evento) {
+sobrenome.addEventListener('change', function(evento) {
 
   var valorCampoSobrenome = evento.target.value.trim();
 
@@ -197,7 +197,7 @@ sobrenome.addEventListener('blur', function(evento) {
 });
 
 
-email.addEventListener('blur', function(evento) {
+email.addEventListener('change', function(evento) {
 
   var valorCampoEmail = evento.target.value.trim();
 
