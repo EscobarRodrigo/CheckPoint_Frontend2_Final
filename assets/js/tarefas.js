@@ -2,12 +2,7 @@
 // 1. capturar o token do localStorage (qual o nome da variável?)
 
 let tokenUser = localStorage.getItem('token');
-
-
 //2. Passar como parametro o TOKEN na função buscar usuário na API;
-
-
-
 
 // let cookieJwt;
 
@@ -27,6 +22,10 @@ let tokenUser = localStorage.getItem('token');
 
 //@@@@ CARREGA E ALTERA DADOS DO USUÁRIO LOGADO
 //Usando Async-Await
+
+
+
+
 async function buscaUsuarioNaApi(token) {
     //console.log(tokenJwtArmazenado);
     let urlGetUsuario = "https://ctd-todo-api.herokuapp.com/v1/users/getMe";
@@ -45,19 +44,21 @@ async function buscaUsuarioNaApi(token) {
 
         if (resposta.status == 200) {
             respostaJson = await resposta.json();
-            //console.log(respostaJson);
+            // console.log(respostaJson);
             alteraDadosUsuarioEmTela(respostaJson);
         } else {
             throw resposta.status
         }
     } catch (error) {
         let escolhaUsuario = confirm("Ocorreu algum erro ao buscar as informações do usuário logado")
-        console.log(error);
+        // console.log(error);
         if (escolhaUsuario) {
-            buscaUsuarioNaApi(tokenUser);
+            buscaUsuarioNaApi(token);
         }
     }
 }
+
+
 
 function alteraDadosUsuarioEmTela(objetoUsuarioRecebido) {
     let nomeUsuarioEmTarefas = document.getElementById('nomeUsuarioEmTarefas');
@@ -93,12 +94,12 @@ function buscaAsTarefasDoUsuario(token) {
 
 function manipulandoTarefasUsuario(listaDeTarefas) {
     //Formas de percorrer a lista obtida
-    /* for (let tarefa of listaDeTarefas) {
+    for (let tarefa of listaDeTarefas) {
         //console.log(tarefa);   
     }
     listaDeTarefas.forEach(tarefa => {
         console.log(tarefa);
-    }); */
+    }); 
     //console.log(listaDeTarefas);
 
     //Se a lista de tarefas retornar vazia da api...
@@ -153,8 +154,8 @@ botaoCadastrar.addEventListener('click', evento => {
             body: objetoTarefaJson,
             headers: {
                 // Precisa passar ambas propriedades pro Headers da requisição
-                'Content-type': 'application/json', //responsável elo json no Body
-                'Authorization': `${tokenUser}` //responsável pela autorização (vem do cookie)
+                'Content-type': 'application/json', //responsável pelo json no Body
+                'Authorization': `${tokenUser}`, //responsável pela autorização (vem do cookie)
             },
         }
 
@@ -192,9 +193,9 @@ function atualizaTarefa(idTarefa, status, token) {
             }
         ),
         headers: {
-            // Preciso passar ambas propriedade pro Headers da requisição
+            // Preciso passar ambas as propriedades pro Headers da requisição
             'Content-type': 'application/json', //responsável elo json no Body
-            'Authorization': tokenJwt //responsável pela autorização (vem do cookie)
+            'Authorization': token //responsável pela autorização (vem do cookie)
         },
     }
 
@@ -208,7 +209,7 @@ function atualizaTarefa(idTarefa, status, token) {
             throw response;
         }).then(function () {
             alert("A tarefa foi atualizada com sucesso!")
-            //Recarrega a página para atualiza a lista com a "nova" tarefa cadastrada
+            //Recarrega a página para atualizar a lista com a "nova" tarefa cadastrada
             window.location.reload();
         })
         .catch(error => {
@@ -251,6 +252,6 @@ function encerrarSessao() {
         //Setar uma data anterior, remove(deleta) o cookie do navegador
         document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
         //Direciona para a tela de login
-        window.location = "index.html"
+        window.location = "login.html"
     }
 }

@@ -21,6 +21,7 @@
   <script src="/assets/js/tarefas_pendentes.js" defer=""></script>
   <script src="/assets/js/tarefas_concluidas.js" defer=""></script>
   <script src="/assets/js/tarefas.js" defer=""></script>
+  <!-- <script src="assets/js/script.js"></script> -->
 
   <title>To-Do App</title>
 <style type="text/css">.vue-notification-group{display:block;position:fixed;z-index:5000}.vue-notification-wrapper{display:block;overflow:hidden;width:100%;margin:0;padding:0}.notification-title{font-weight:600}.vue-notification-template{background:#fff}.vue-notification,.vue-notification-template{display:block;box-sizing:border-box;text-align:left}.vue-notification{font-size:12px;padding:10px;margin:0 5px 5px;color:#fff;background:#44a4fc;border-left:5px solid #187fe7}.vue-notification.warn{background:#ffb648;border-left-color:#f48a06}.vue-notification.error{background:#e54d42;border-left-color:#b82e24}.vue-notification.success{background:#68cd86;border-left-color:#42a85f}.vn-fade-enter-active,.vn-fade-leave-active,.vn-fade-move{transition:all .5s}.vn-fade-enter,.vn-fade-leave-to{opacity:0}</style><meta id="bbafmabaelnnkondpfpjmdklbmfnbmol"></head>
@@ -32,7 +33,7 @@
     </nav>
 
     <div class="user-info">
-      <p id="nomeUsuarioEmTarefas">Teste - JS</p>
+      <p id="nomeUsuarioEmTarefas"></p>
       <!-- <div class="user-image"></div> -->
       <p id="closeApp" onclick="encerrarSessao()">Finalizar sessão
       </p>
@@ -50,8 +51,10 @@
     </div>
 
     <button id="botaoTarefas">
-      <img src="./assets/images/adicionar.png" alt="Adicionar uma nova tarefa">
+      <img src="./assets/images/icons8-adicionar-regra-100.png" alt="Adicionar uma nova tarefa">
     </button>
+
+    
   </form>
 
 
@@ -66,13 +69,16 @@
 
   <h2 class="tarefas-terminadas-titulo">Tarefas terminadas</h2>
   <ul class="tarefas-terminadas">
-    <!-- <a target="_blank" href="https://icons8.com/icon/1501/mais">Mais</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->
+ 
     <li class="tarefa">
       <div class="done"></div>
       <div class="descricao">
-        <p class="nome">${tarefa.descricao}</p>
+        <p class="nome"></p>
         <div>
-          <button><i id="${tarefa.id}" class="fas fa-undo-alt change"></i></button>
+          <button>
+            <i id="${tarefa.id}" class="fas fa-undo-alt change"></i>
+            <!-- <img src="./assets/images/icons8-retornar-50.png" alt="Voltar"> -->
+          </button>
           <button><i id="${tarefa.id}" class="far fa-trash-alt"></i></button>
         </div>
       </div>
@@ -81,7 +87,7 @@
     <li class="tarefa">
       <div class="done"></div>
       <div class="descricao">
-        <p class="nome">${tarefa.descricao}</p>
+        <p class="nome"></p>
         <div>
           <button><i id="${tarefa.id}" class="fas fa-undo-alt change"></i></button>
           <button><i id="${tarefa.id}" class="far fa-trash-alt"></i></button>
