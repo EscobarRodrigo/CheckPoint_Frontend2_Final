@@ -57,7 +57,7 @@ if (formularioLogin) {
           } else if (resultado === "Error del servidor") {
             alert("Erro do servidor");
           } else {
-            alert(resultado.jwt);
+            // alert(resultado.jwt); // jwt é o token de autenticação
             localStorage.setItem("token", resultado.jwt);
             window.location.href = "tarefas.html";
             console.log('Usuário criado com sucesso')
@@ -114,7 +114,7 @@ if (formularioCadastro) {
           } else if (resultado === "Error del servidor") {
             alert("Erro do servidor")
           } else {
-            alert(resultado.jwt);
+            // alert(resultado.jwt); // jwt é o token de autenticação
             localStorage.setItem("token", resultado.jwt);
             window.location = "login.html";
             alert('Usuário criado com sucesso')

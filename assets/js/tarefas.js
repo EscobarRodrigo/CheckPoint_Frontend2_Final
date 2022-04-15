@@ -1,9 +1,5 @@
 
-// 1. capturar o token do localStorage (qual o nome da variável?)
-
-let tokenUser = localStorage.getItem('token');
-//2. Passar como parametro o TOKEN na função buscar usuário na API;
-
+//obs....
 // let cookieJwt;
 
 ///@@@@@@ Executa automaticamente ao iniciar a página
@@ -20,11 +16,18 @@ let tokenUser = localStorage.getItem('token');
 //     }
 // }
 
+
+
+
+// 1. capturar o token do localStorage (qual o nome da variável?)
+
+let tokenUser = localStorage.getItem("token");
+//2. Passar como parametro o TOKEN na função buscar usuário na API;
+
+
+
 //@@@@ CARREGA E ALTERA DADOS DO USUÁRIO LOGADO
 //Usando Async-Await
-
-
-
 
 async function buscaUsuarioNaApi(token) {
     //console.log(tokenJwtArmazenado);
@@ -34,7 +37,7 @@ async function buscaUsuarioNaApi(token) {
         //method: 'GET', //Pode omitir o GET da configuração
         //body: objetoUsuarioCadastroJson, //Não precisa de body
         headers: {
-            'Authorization': `${token}`, // é OBRIGATORIO passar essa informação
+            'authorization': `${token}`, // é OBRIGATORIO passar essa informação
         },
     };
     let resposta;
@@ -70,7 +73,7 @@ function buscaAsTarefasDoUsuario(token) {
     let urlGetTarefas = "https://ctd-todo-api.herokuapp.com/v1/tasks";
     let configuracaoRequisicao = {
         headers: {
-            'Authorization': `${token}`, // é OBRIGATORIO passar essa informação
+            'authorization': `${token}`, // é OBRIGATORIO passar essa informação
         },
     };
 
@@ -124,6 +127,8 @@ function manipulandoTarefasUsuario(listaDeTarefas) {
 
 }
 
+
+
 ///@@@@@@ CADASTRANDO UMA NOVA TAREFA PARA O USUÁRIO LOGADO
 let botaoCadastrar = document.getElementById("botaoTarefas");
 
@@ -155,7 +160,7 @@ botaoCadastrar.addEventListener('click', evento => {
             headers: {
                 // Precisa passar ambas propriedades pro Headers da requisição
                 'Content-type': 'application/json', //responsável pelo json no Body
-                'Authorization': `${tokenUser}`, //responsável pela autorização (vem do cookie)
+                'authorization': `${tokenUser}`, //responsável pela autorização (vem do cookie)
             },
         }
 
@@ -181,6 +186,13 @@ botaoCadastrar.addEventListener('click', evento => {
     }
 });
 
+//Rodrigo Escobar - necessário capturar os dados do usuário logado para buscar as tarefas dele
+//necessário buscar a tarefa criada através do appendingChild
+
+
+
+
+
 ///@@@ ATUALIZAR TAREFA, ALETANDO SEU STATUS 
 function atualizaTarefa(idTarefa, status, token) {
 
@@ -195,7 +207,7 @@ function atualizaTarefa(idTarefa, status, token) {
         headers: {
             // Preciso passar ambas as propriedades pro Headers da requisição
             'Content-type': 'application/json', //responsável elo json no Body
-            'Authorization': token //responsável pela autorização (vem do cookie)
+            'authorization': token //responsável pela autorização (vem do cookie)
         },
     }
 
